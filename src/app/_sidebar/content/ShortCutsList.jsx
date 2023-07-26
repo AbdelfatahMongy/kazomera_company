@@ -1,50 +1,29 @@
-import React from 'react';
-import { GiClosedBarbute } from 'react-icons/gi';
-import { Link } from 'react-router-dom';
+// import "../sidebar.css";
+import React from "react";
+import CreateMenu from "./CreateMenu";
+import SideMenu from "./SideMenu";
+import InterestsMenu from "./InterestsMenu";
 
-const userRoutesList = [
-    {icon: '', title: 'مشروعاتي', to:'projects'},
-    {icon: '', title: 'مساهماتي', to:'contributions'},
-    {icon: '', title: 'استثماراتي', to:'investments'},
-    {icon: '', title: 'ثفقاتي', to:'deals'},
-  ]
+// import siteStructure from "app_structure ";
 
-const userRoutesSavedData = [
-    {icon: '', title: 'اهتماماتي', to:'interests'},
-    {icon: '', title: 'شبكة علاقاتي', to:'relations'},
-    {icon: '', title: 'العناصر المحفوظة', to:'reserved'},
-]
-
-const UserLoginInfo = [
-  {icon: '', title: 'تسجيل الدخول', to:'/account/login'},
-  {icon: '', title: 'الحساب', to:'/profile'},
-  {icon: '', title: 'المتطلبات', to:'/requieres'},
-
-]
-
-function itemsCreator(list) {
+const ShortCutsList = () => {
+  // you can destruct the menus content once from here 
+  // const [langOpti, setLangOpti] = React.useState('ar')
+  // const { sideMenu, interestsMenu, createMenu } = siteStructure(langOpti).sideNav
+  // then send it to each child as prop so when we change the language one all will change
+  // console.log(sideMenu, interestsMenu, createMenu)
+  // then create a global component in the component folder to generate the list one of these three can do the job
+  // by the end will get just one file in the _sidebar to generate the list and 2 files in the 
+  // component folder as helpers instead of 6 files
   return (
-    list.map(({icon, title, to:address}, i) => {
-      return (
-        <li key={i}>
-          <Link to={`${address}?filter=mine`}>
-            <i><GiClosedBarbute fontSize={22} /></i>
-            <span>{title}</span>
-          </Link>
-        </li>
-      )
-    })
-  )
-}
+    <>
+      <CreateMenu />
+      <hr />
+      <SideMenu />
+      <hr />
+      <InterestsMenu />
+    </>
+  );
+};
 
-
-export default function menuMine() {
-  return (
-    <div className='projects__right-menu'>
-      
-      <ul className='projects__right-main-menu'>{itemsCreator(userRoutesList)}</ul>
-      <ul className='projects__right-fav-menu'>{itemsCreator(userRoutesSavedData)}</ul>
-      
-    </div>
-  )
-}
+export default ShortCutsList;
